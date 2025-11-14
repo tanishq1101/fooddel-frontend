@@ -1,6 +1,8 @@
 import axios from "axios";
 import React, { createContext, useState, useEffect } from "react";
 
+axios.defaults.withCredentials = true;
+
 // eslint-disable-next-line react-refresh/only-export-components
 export const StoreContext = createContext(null);
 
