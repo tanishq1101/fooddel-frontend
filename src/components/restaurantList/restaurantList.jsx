@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import "./RestaurantList.css";
+import "./restaurantList.css";
 import { getUserCity } from "../../utils/getUserCity";
 import { indianCities } from "../../data/cities";
 import { StoreContext } from "../../context/StoreContext";
