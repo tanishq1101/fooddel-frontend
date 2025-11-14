@@ -1,7 +1,7 @@
 import { useSearchParams, useNavigate } from "react-router-dom";
 import { useEffect, useContext } from "react";
 import axios from "axios";
-import { StoreContext } from "../../context/StoreContext";
+import { StoreContext } from "../context/StoreContext";
 
 const PaymentSuccess = () => {
   const [params] = useSearchParams();
