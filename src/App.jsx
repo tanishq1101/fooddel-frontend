@@ -2,15 +2,15 @@ import React, { useState, useContext } from "react";
 import { StoreContext } from "./context/StoreContext";
 import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
-import Home from "./pages/home/Home";
-import Cart from "./pages/Cart/Cart";
-import PlaceOrder from "./pages/PlaceOrder/PlaceOrder";
+import Home from "./pages/home/Home.jsx";
+import Cart from "./pages/Cart/Cart.jsx";
+import PlaceOrder from "./pages/PlaceOrder/PlaceOrder.jsx";
 import { Route, Routes } from "react-router-dom";
 import LoginPopup from "./components/LoginPopup/LoginPopup";
-import Verify from "./pages/Verify/Verify";
-import MyOrders from "./pages/MyOrders/MyOrders";
-import PaymentSuccess from "./pages/payment-success";
-import PaymentFailed from "./pages/payment-failed";
+import Verify from "./pages/Verify/Verify.jsx";
+import MyOrders from "./pages/MyOrders/MyOrders.jsx";
+import PaymentSuccess from "./pages/payment-success.jsx";
+import PaymentFailed from "./pages/payment-failed.jsx";
 import RestaurantMenu from "./pages/restaurantMenu/restaurantMenu.jsx";
 
 const App = () => {
