@@ -12,7 +12,9 @@ export const StoreContextProvider = (props) => {
   const [food_list, setFoodList] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const url = "https://fooddel-backend.vercel.app";
+  const url = import.meta.env.DEV
+  ? "http://localhost:4000"
+  : "https://fooddel-backend.vercel.app";
 
   // Persist token in localStorage
   useEffect(() => {
@@ -151,6 +153,7 @@ const loadCartData = async (userToken) => {
       }
     }
     initialize();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // ---------- Context Value ----------
