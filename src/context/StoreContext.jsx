@@ -10,7 +10,7 @@ export const StoreContextProvider = (props) => {
   const [food_list, setFoodList] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const url = "http://localhost:8080";
+  const url = "http://localhost:4000";
 
   // Persist token in localStorage
   useEffect(() => {
