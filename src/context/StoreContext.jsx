@@ -10,7 +10,7 @@ export const StoreContextProvider = (props) => {
   const [food_list, setFoodList] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const url = "https://fooddel-backend.vercel.app/";
+  const url = "https://fooddel-backend.vercel.app";
 
   // Persist token in localStorage
   useEffect(() => {
