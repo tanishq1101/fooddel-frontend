@@ -11,7 +11,7 @@ import Verify from "./pages/Verify/Verify";
 import MyOrders from "./pages/MyOrders/MyOrders";
 import PaymentSuccess from "./pages/payment-success";
 import PaymentFailed from "./pages/payment-failed";
-import RestaurantMenu from "./pages/restaurantMenu/restaurantMenu";
+import RestaurantMenu from "./pages/restaurantMenu/restaurantMenu.jsx";
 
 const App = () => {
   const [showLogin, setShowLogin] = useState(false);
