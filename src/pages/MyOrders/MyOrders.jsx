@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState, useCallback } from "react";
 import { StoreContext } from "../../context/StoreContext";
 import axios from "axios";
 import { useNavigate, useLocation } from "react-router-dom";
-import "./myOrders.css";
+import "./MyOrders.css";
 
 const itemEmoji = {
   Pizza: "🍕",
