@@ -14,7 +14,7 @@ export const StoreContextProvider = (props) => {
 
   const url = import.meta.env.DEV
   ? "http://localhost:4000"
-  : "https://fooddel-backend.vercel.app";
+  : "https://fooddel-backend-rux6.onrender.com";
 
   // Persist token in localStorage
   useEffect(() => {
