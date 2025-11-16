@@ -14,9 +14,12 @@ const PaymentSuccess = () => {
     const saveOrder = async () => {
       try {
         const res = await axios.get(
-          `${url}/api/order/payment-success?session_id=${session_id}`,
+          `${url}/api/order/payment-success`,
           {
-            headers: { Authorization: `Bearer ${token}` },
+            params: { session_id },     // ✅ BEST PRACTICE
+            headers: token
+              ? { Authorization: `Bearer ${token}` }
+              : {},
             withCredentials: true,
           }
         );
@@ -28,7 +31,7 @@ const PaymentSuccess = () => {
         }
 
       } catch (err) {
-        console.error("Error saving order:", err);
+        console.error("❌ Error saving order:", err.response?.data || err);
         navigate("/payment-failed");
       }
     };
