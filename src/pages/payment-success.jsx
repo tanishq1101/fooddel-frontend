@@ -15,20 +15,37 @@ const PaymentSuccess = () => {
       return;
     }
 
-    // ⏩ Immediately redirect user (no delay)
-    navigate("/myorders", { state: { refresh: true } });
+    const confirmOrder = async () => {
+      try {
+        console.log("🔄 Saving order...");
+        const res = await axios.get(`${url}/api/order/payment-success`, {
+          params: { session_id },
+          headers: token ? { Authorization: `Bearer ${token}` } : {},
+          withCredentials: true,
+        });
 
-    // 🔄 Save order silently in background
-    axios.get(`${url}/api/order/payment-success`, {
-      params: { session_id },
-      headers: token ? { Authorization: `Bearer ${token}` } : {},
-      withCredentials: true,
-    }).catch(err => console.log("Order save failed:", err));
+        if (res.data.success) {
+          console.log("✅ Order saved!");
+          navigate("/myorders", { state: { refresh: true } });
+        } else {
+          console.log("❌ Save failed, redirecting");
+          navigate("/payment-failed");
+        }
+      } catch (err) {
+        console.error("❌ Order save error:", err);
+        navigate("/payment-failed");
+      }
+    };
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    confirmOrder();
+  }, [session_id, navigate, token, url]);
 
-  return null;
+  return (
+    <div style={{ textAlign: "center", paddingTop: "50px" }}>
+      <h1>⏳ Finalizing your payment...</h1>
+      <p>Please wait while we confirm your order.</p>
+    </div>
+  );
 };
 
 export default PaymentSuccess;
