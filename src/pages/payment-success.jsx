@@ -7,44 +7,28 @@ const PaymentSuccess = () => {
   const [params] = useSearchParams();
   const navigate = useNavigate();
   const session_id = params.get("session_id");
-
   const { url, token } = useContext(StoreContext);
 
   useEffect(() => {
-    const saveOrder = async () => {
-      try {
-        const res = await axios.get(
-          `${url}/api/order/payment-success`,
-          {
-            params: { session_id },     // ✅ BEST PRACTICE
-            headers: token
-              ? { Authorization: `Bearer ${token}` }
-              : {},
-            withCredentials: true,
-          }
-        );
+    if (!session_id) {
+      navigate("/payment-failed");
+      return;
+    }
 
-        if (res.data.success) {
-          navigate("/myorders", { state: { refresh: true } });
-        } else {
-          navigate("/payment-failed");
-        }
+    // ⏩ Immediately redirect user (no delay)
+    navigate("/myorders", { state: { refresh: true } });
 
-      } catch (err) {
-        console.error("❌ Error saving order:", err.response?.data || err);
-        navigate("/payment-failed");
-      }
-    };
+    // 🔄 Save order silently in background
+    axios.get(`${url}/api/order/payment-success`, {
+      params: { session_id },
+      headers: token ? { Authorization: `Bearer ${token}` } : {},
+      withCredentials: true,
+    }).catch(err => console.log("Order save failed:", err));
 
-    if (session_id) saveOrder();
-  }, [session_id, navigate, token, url]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-  return (
-    <div style={{ textAlign: "center", paddingTop: "50px" }}>
-      <h1>✅ Payment Successful!</h1>
-      <p>Finalizing your order...</p>
-    </div>
-  );
+  return null;
 };
 
 export default PaymentSuccess;
